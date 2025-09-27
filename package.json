@@ -1,5 +1,5 @@
 {
-  "name": "hedera-mcp-server",
+  "name": "@laciferin/hedera-mirror-mcp",
   "version": "0.0.0",
   "description": "an MCP (model-context-protocol) server for Hedera",
   "main": "index.js",
