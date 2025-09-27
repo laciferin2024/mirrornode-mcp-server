@@ -1,10 +1,25 @@
 #!/usr/bin/env bun
 
-import {
-  endpointDefinitions,
-  createApiClient,
-  type ApiEndpoint,
-} from "./openApiZod"
+import { endpointDefinitions, createApiClient } from './openApiZod';
+import { Method } from '@zodios/core';
+
+type ApiEndpoint = {
+  method: Method;
+  path: string;
+  alias: string;
+  description?: string;
+  parameters?: Array<{
+    name: string;
+    type: 'Path' | 'Query' | 'Body';
+    schema: z.ZodType<any>;
+  }>;
+  response: z.ZodType<any>;
+  errors?: Array<{
+    status: number;
+    description?: string;
+    schema: z.ZodType<any>;
+  }>;
+};
 import { FastMCP } from "fastmcp"
 import { z } from "zod"
 
@@ -78,11 +93,9 @@ function convertZodiosToMcp(endpoint: ApiEndpoint): void {
 
     const zodiosReq: ZodiosRequest = { params, queries }
     console.log(alias, zodiosReq)
-    const result = await zodiosApiClient.request({
-      method: endpoint.method,
-      url: endpoint.path,
-      params: zodiosReq.params || {},
-      queries: zodiosReq.queries || {},
+    const method = endpoint.method.toLowerCase() as 'get' | 'post' | 'put' | 'delete' | 'patch';
+    const result = await (zodiosApiClient as any)[method](endpoint.path, zodiosReq.params ?? {}, {
+      queries: zodiosReq.queries ?? {}
     })
     return JSON.stringify(result, undefined, 1)
   }
