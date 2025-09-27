@@ -1,6 +1,6 @@
 {
   "name": "@laciferin/hedera-mirror-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "an MCP (model-context-protocol) server for Hedera powered by mirror nodes",
   "main": "dist/mcpServer.js",
