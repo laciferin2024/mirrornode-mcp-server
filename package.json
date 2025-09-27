@@ -5,6 +5,9 @@
   "description": "an MCP (model-context-protocol) server for Hedera powered by mirror nodes",
   "main": "dist/mcpServer.js",
   "types": "dist/mcpServer.d.ts",
+  "bin": {
+    "hedera-mirror-mcp": "./dist/cli.js"
+  },
   "files": [
     "dist",
     "src"
@@ -13,6 +16,8 @@
     "build": "tsc",
     "clean": "rimraf dist",
     "prepare": "npm run clean && npm run build",
+    "start": "node dist/cli.js",
+    "dev": "tsc && node dist/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

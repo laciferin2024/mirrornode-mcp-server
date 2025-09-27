@@ -42,9 +42,9 @@ interface ZodiosRequest {
   queries?: Record<string, unknown>
 }
 
-const mcpServer = new FastMCP({
+export const mcpServer = new FastMCP({
   name: "hederaTestnetMirrorNodeApi",
-  version: "0.0.0",
+  version: "0.1.0",
 })
 
 const zodiosApiClient = createApiClient(
