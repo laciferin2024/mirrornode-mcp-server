@@ -1,9 +1,18 @@
 {
   "name": "@laciferin/hedera-mirror-mcp",
   "version": "0.0.0",
+  "private": false,
   "description": "an MCP (model-context-protocol) server for Hedera powered by mirror nodes",
-  "main": "index.js",
+  "main": "dist/mcpServer.js",
+  "types": "dist/mcpServer.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "prepare": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +31,15 @@
   "homepage": "https://github.com/hedera-dev/hedera-mcp-server#readme",
   "dependencies": {
     "@zodios/core": "10.9.6",
-    "fastmcp": "1.20.5",
+    "fastmcp": "^1.20.5",
     "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
